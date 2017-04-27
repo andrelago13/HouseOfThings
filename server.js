@@ -19,7 +19,7 @@ var corsOptions = {
   credentials: true
 };
 
-//var adapters = require('./routes/adapters/main');
+var adapters = require('./routes/adapters/main');
 
 app.use(cors(corsOptions));
 
