@@ -13,6 +13,7 @@ router.post('/', function (req,res,next) {
     const text = req.body.text;
     const responseUrl = req.body.response_url;
 
+    console.log(req.body);
     // Set the headers
     var headers = {
         // 'User-Agent':       'Super Agent/0.0.1',
@@ -32,7 +33,7 @@ router.post('/', function (req,res,next) {
                 response_type: "in_channel",
                 text: result
             };
-            http.request( options);
+            // http.request(options);
 
             res.status(200).send(result);
             break;
