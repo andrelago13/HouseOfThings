@@ -8,7 +8,7 @@ var cors = require('cors');
 
 var lights = require('./routes/lights');
 
-const config = require('./config/config.js);
+//const config = require('./config/config.js');
 
 var app = express();
 
@@ -19,7 +19,7 @@ var corsOptions = {
   credentials: true
 };
 
-const adapters = require('./routes/adapters/main');
+//var adapters = require('./routes/adapters/main');
 
 app.use(cors(corsOptions));
 
@@ -32,7 +32,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/lights', lights);
-app.use('/api', adapter);
+//app.use('/api', adapter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
