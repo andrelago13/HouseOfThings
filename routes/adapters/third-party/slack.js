@@ -13,18 +13,26 @@ router.post('/', function (req,res,next) {
     const text = req.body.text;
     const responseUrl = req.body.response_url;
 
+    // Set the headers
+    var headers = {
+        // 'User-Agent':       'Super Agent/0.0.1',
+        'Content-Type':     'application/json'
+    }
+
+    // Configure the request
+    var options = {
+        url: responseUrl,
+        method: 'POST',
+        headers: headers,
+    }
     switch (command){
         case '/turn-on':
             result = turnOn(text);
-            http.request(
-                {
-                    host: responseUrl,
-                    method: 'POST',
-                    form:{
-                        response_type: "in_channel",
-                        text: result
-                    }
-                }, null);
+            options.form = {
+                response_type: "in_channel",
+                text: result
+            };
+            http.request( options);
 
             res.send(200,'ok');
             break;
