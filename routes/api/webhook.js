@@ -8,6 +8,6 @@ router.post('/', function (req, res) {
 
 router.get('/', function (req, res) {
   res.status(200).send('GET');
-}
+});
 
 module.exports = router;
