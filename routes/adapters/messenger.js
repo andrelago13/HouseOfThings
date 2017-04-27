@@ -99,7 +99,6 @@ function sendTextMessage(recipientId, messageText) {
 }
 
 function sendButtonMessage(recipientId, description, options) {
-  console.log('1');
   var messageData = {
     recipient: {
       id: recipientId,
@@ -114,15 +113,13 @@ function sendButtonMessage(recipientId, description, options) {
       }
     }
   }
-  console.log('2' + messageData);
-  messageData.message.payload.buttons = options.map(function (x) {
+  messageData.message.attachment.payload.buttons = options.map(function (x) {
     return {
       type: "postback",
       title: x.description,
       payload: x.id
     }
   });
-  console.log('3' + messageData);
   callSendAPI(messageData);
 }
 
