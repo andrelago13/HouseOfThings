@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 var adapter = require('./routes/adapters/third-party/main');
 var lights = require('./routes/api/lights');
-var webhooks = require('./routes/api/webhooks');
+var webhook = require('./routes/api/webhook');
 
 //const config = require('./config/config.js');
 
@@ -33,7 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/lights', lights);
 app.use('/third-party', adapter);
-app.use('/api/webhooks', webhooks);
+app.use('/api/webhook', webhook);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
