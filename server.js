@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 
-var lights = require('./routes/lights');
+var lights = require('./routes/api/lights');
 
 //const config = require('./config/config.js');
 
@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/lights', lights);
+app.use('/api/lights', lights);
 //app.use('/api', adapter);
 
 // catch 404 and forward to error handler
