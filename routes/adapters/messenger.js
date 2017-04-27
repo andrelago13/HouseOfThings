@@ -116,7 +116,6 @@ function callSendAPI(messageData) {
       console.error(error);
     }
   });
-
 }
 
 module.exports = router;
