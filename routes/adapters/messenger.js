@@ -71,7 +71,7 @@ function receivedMessage(event) {
         sendGenericMessage(senderID);
         break;
       case 'lights':
-        //sendButtonMessage(senderID, 'Choose a light.', engine.getLights());
+        sendButtonMessage(senderID, 'Choose a light.', engine.getLights());
         break;
       default:
         sendTextMessage(senderID, messageText);
@@ -113,7 +113,7 @@ function sendButtonMessage(recipientId, description, options) {
       }
     }
   }
-  message.payload.buttons = options.map(function (x) {
+  messageData.message.payload.buttons = options.map(function (x) {
     return {
       type: "postback",
       title: x.description,
