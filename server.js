@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var adapter = require('./routes/adapters/third-party/main');
-var lights = require('./routes/lights');
+var lights = require('./routes/api/lights');
 
 //const config = require('./config/config.js');
 
