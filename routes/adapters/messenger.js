@@ -1,4 +1,5 @@
 var express = require('express');
+var engine = require('../../lib/engine.js');
 var request = require('request');
 var router = express.Router();
 
@@ -69,7 +70,9 @@ function receivedMessage(event) {
       case 'generic':
         sendGenericMessage(senderID);
         break;
-
+      case 'lights':
+        sendButtonMessage(senderID, 'Choose a light.', engine.getLights());
+        break;
       default:
         sendTextMessage(senderID, messageText);
     }
@@ -93,6 +96,30 @@ function sendTextMessage(recipientId, messageText) {
   };
 
   callSendAPI(messageData);
+}
+
+function sendButtonMessage(recipientId, description, options) {
+  var messageData = {
+    recipient: {
+      id: recipientId,
+    },
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "button",
+          text: description
+        }
+      }
+    }
+  }
+  message.payload.buttons = options.map(function (x) {
+    return {
+      type: "postback",
+      title: x.description,
+      payload: x.id
+    }
+  });
 }
 
 function callSendAPI(messageData) {
