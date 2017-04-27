@@ -23,6 +23,7 @@ router.post('/', function (req,res,next) {
     // Configure the request
     var options = {
         url: responseUrl,
+        port: 80,
         method: 'POST',
         headers: headers,
     }
