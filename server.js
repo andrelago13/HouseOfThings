@@ -5,9 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
-var adapter = require('./routes/adapters/third-party/main');
-var lights = require('./routes/api/lights');
 var messenger = require('./routes/adapters/messenger');
+const router = express.Router();
 
 //const config = require('./config/config.js');
 
@@ -20,6 +19,7 @@ var corsOptions = {
   credentials: true
 };
 
+var adapters = require('./routes/adapters/main');
 
 app.use(cors(corsOptions));
 
@@ -31,8 +31,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api/lights', lights);
-app.use('/third-party', adapter);
+app.use('/third-party', thirdParty);
 app.use('/api/messenger', messenger);
 
 // catch 404 and forward to error handler
