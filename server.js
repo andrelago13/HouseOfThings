@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 
 var lights = require('./routes/lights');
+const thirdParty = require('./routes/adapters/third-party');
+const router = express.Router();
 
 //const config = require('./config/config.js');
 
@@ -32,10 +34,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/lights', lights);
-//app.use('/api', adapter);
+app.use('/third-party', thirdParty);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+  // console.log(req);
   var err = new Error('Not Found');
   err.status = 404;
   next(err);

@@ -1,10 +1,8 @@
-"use strict";
-
 const express = require('express');
 const router = express.Router();
 
-const example = require('./example');
+const slack = require('./slack');
 
-app.use('/example', example);
+router.use('/slack', slack);
 
 module.exports = router;
