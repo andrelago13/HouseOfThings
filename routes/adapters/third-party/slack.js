@@ -16,12 +16,15 @@ router.post('/', function (req,res,next) {
     switch (command){
         case '/turn-on':
             result = turnOn(text);
-            http.post(
+            http.request(
                 {
                     host: responseUrl,
-                    response_type: "in_channel",
-                    text: result
-                });
+                    method: 'POST',
+                    form:{
+                        response_type: "in_channel",
+                        text: result
+                    }
+                }, null);
 
             res.send(200,'ok');
             break;
