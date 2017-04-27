@@ -120,7 +120,7 @@ function sendButtonMessage(recipientId, description, options) {
       payload: x.id
     }
   });
-
+  console.log(messageData);
   callSendAPI(messageData);
 }
 
