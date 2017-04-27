@@ -34,7 +34,7 @@ router.post('/', function (req,res,next) {
                 response_type: "in_channel",
                 text: result
             };
-            // http.request(options);
+            http.request(options);
 
             res.status(200).send();
             break;
