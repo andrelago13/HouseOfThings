@@ -23,7 +23,7 @@ router.post('/', function (req,res,next) {
                     text: result
                 });
 
-            res.send("ok")
+            res.send(200,'ok');
             break;
 
     }
