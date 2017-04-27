@@ -3,7 +3,7 @@ const express = require('express');
 const  router = express.Router();
 
 function turnOn(text) {
-    return 'id: '+ text + ' turned on';
+    return '['+ text + '] turned on';
 
 }
 
@@ -23,6 +23,7 @@ router.post('/', function (req,res,next) {
     // Configure the request
     var options = {
         url: responseUrl,
+        port: 80,
         method: 'POST',
         headers: headers,
     }
@@ -35,7 +36,7 @@ router.post('/', function (req,res,next) {
             };
             // http.request(options);
 
-            res.status(200).send(result);
+            res.json(options.form);
             break;
 
     }
