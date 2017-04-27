@@ -1,10 +1,9 @@
-"use strict";
-
 const express = require('express');
 const router = express.Router();
 
-const example = require('./example');
-
-app.use('/example', example);
+router.get('/', function (req, res, next) {
+    console.log(req.body);
+    res.sendStatus(404);
+});
 
 module.exports = router;

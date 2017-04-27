@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
-
+var adapter = require('./routes/adapters/third-party/main');
 var lights = require('./routes/lights');
 
 //const config = require('./config/config.js');
@@ -19,7 +19,6 @@ var corsOptions = {
   credentials: true
 };
 
-var adapters = require('./routes/adapters/main');
 
 app.use(cors(corsOptions));
 
@@ -32,7 +31,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/lights', lights);
-//app.use('/api', adapter);
+app.use('/third-party', adapter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
