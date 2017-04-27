@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const VALIDATION_TOKEN = process.env.MESSENGER_VALIDATION_TOKEN || 'ah358sdghd354';
+const PAGE_ACCESS_TOKEN = process.env.MESSENGER_PAGE_ACCESS_TOKEN || 'EAAap5vmi0TIBAM4ejqndsXJkJinsILlrqdni4oLyy6PtIRVZCrLZCviQiVP7wzuSTaTvtPqo25UxZADZCApXGrPJTEAWTJhvZBPTxYPbJZBQkF8Jx2GHwFgZCfUXzaZC3LGJyWvviGpejFmLVZB6rAikOXWuoVw68uJZC3DxUHuV81mQZDZD';
 
 router.get('/', function(req, res) {
   if (req.query['hub.mode'] === 'subscribe' &&
@@ -74,6 +75,45 @@ function receivedMessage(event) {
   } else if (messageAttachments) {
     sendTextMessage(senderID, "Message with attachment received");
   }
+}
+
+function sendGenericMessage(recipientId, messageText) {
+  // To be expanded in later sections
+}
+
+function sendTextMessage(recipientId, messageText) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      text: messageText
+    }
+  };
+
+  callSendAPI(messageData);
+}
+
+function callSendAPI(messageData) {
+  request({
+    uri: 'https://graph.facebook.com/v2.6/me/messages',
+    qs: { access_token: PAGE_ACCESS_TOKEN },
+    method: 'POST',
+    json: messageData
+
+  }, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      var recipientId = body.recipient_id;
+      var messageId = body.message_id;
+
+      console.log("Successfully sent generic message with id %s to recipient %s",
+        messageId, recipientId);
+    } else {
+      console.error("Unable to send message.");
+      console.error(response);
+      console.error(error);
+    }
+  });
 }
 
 module.exports = router;
