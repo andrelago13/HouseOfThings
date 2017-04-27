@@ -36,7 +36,7 @@ router.post('/', function (req,res,next) {
             };
             // http.request(options);
 
-            // res.status(200).send(result);
+            res.status(200).send();
             break;
 
     }
