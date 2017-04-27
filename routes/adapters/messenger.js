@@ -71,7 +71,7 @@ function receivedMessage(event) {
         sendGenericMessage(senderID);
         break;
       case 'lights':
-        sendButtonMessage(senderID, 'Choose a light.', engine.getLights());
+        //sendButtonMessage(senderID, 'Choose a light.', engine.getLights());
         break;
       default:
         sendTextMessage(senderID, messageText);
