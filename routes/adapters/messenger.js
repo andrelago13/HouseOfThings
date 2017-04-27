@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const VALIDATION_TOKEN = process.env.MESSENGER_VALIDATION_TOKEN || 'ah358sdghd354';
+const PAGE_ACCESS_TOKEN = process.env.MESSENGER_PAGE_ACCESS_TOKEN || 'EAAap5vmi0TIBAM4ejqndsXJkJinsILlrqdni4oLyy6PtIRVZCrLZCviQiVP7wzuSTaTvtPqo25UxZADZCApXGrPJTEAWTJhvZBPTxYPbJZBQkF8Jx2GHwFgZCfUXzaZC3LGJyWvviGpejFmLVZB6rAikOXWuoVw68uJZC3DxUHuV81mQZDZD';
 
 router.get('/', function(req, res) {
   if (req.query['hub.mode'] === 'subscribe' &&
