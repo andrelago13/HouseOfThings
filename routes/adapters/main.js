@@ -1,12 +1,9 @@
-"use strict";
+var express = require('express');
+var router = express.Router();
 
-const express = require('express');
-const router = express.Router();
-
-const adapters = require('./routes/adapters/main');
-const thirdParty = require('./third-party/main');
-
-app.use('/things', things);
-app.use('/third-party', thirdParty);
+/* GET users listing. */
+router.get('/', function(req, res, next) {
+  res.json([]);
+});
 
 module.exports = router;
