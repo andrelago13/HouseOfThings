@@ -7,7 +7,7 @@ router.post('/', function (req, res) {
 });
 
 router.get('/', function (req, res) {
-  res.status(200).send(req.body);
+  res.status(200).send(req.params);
 });
 
 module.exports = router;
