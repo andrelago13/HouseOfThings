@@ -3,7 +3,7 @@ const express = require('express');
 const  router = express.Router();
 
 function turnOn(text) {
-    return 'id: '+ text + 'turned on';
+    return 'id: '+ text + ' turned on';
 
 }
 
@@ -13,6 +13,7 @@ router.post('/', function (req,res,next) {
     const text = req.body.text;
     const responseUrl = req.body.response_url;
 
+    console.log(req.body);
     // Set the headers
     var headers = {
         // 'User-Agent':       'Super Agent/0.0.1',
@@ -32,9 +33,9 @@ router.post('/', function (req,res,next) {
                 response_type: "in_channel",
                 text: result
             };
-            http.request( options);
+            // http.request(options);
 
-            res.send(200,'ok');
+            res.status(200).send(result);
             break;
 
     }
