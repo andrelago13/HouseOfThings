@@ -6,8 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 
-var lights = require('./routes/lights');
 const thirdParty = require('./routes/adapters/third-party');
+const webhook = require('./routes/api/webhook');
 const router = express.Router();
 
 //const config = require('./config/config.js');
@@ -33,7 +33,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/lights', lights);
 app.use('/third-party', thirdParty);
 app.use('/api/webhook', webhook);
 
