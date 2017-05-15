@@ -87,12 +87,12 @@ function receivedPostback(event) {
   var senderID = event.sender.id;
   var recipientID = event.recipient.id;
   var timeOfMessage = event.timestamp;
-  var message = event.message;
+  var message = event.postback;
 
   console.log("Received message for user %d and page %d at %d with message:",
     senderID, recipientID, timeOfMessage);
   console.log(JSON.stringify(message));
-  sendTextMessage(senderID, JSON.stringify(payload));
+  sendTextMessage(senderID, JSON.stringify(message));
 }
 
 function sendGenericMessage(recipientId, messageText) {
