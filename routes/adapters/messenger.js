@@ -92,7 +92,7 @@ function receivedPostback(event) {
   console.log("Received message for user %d and page %d at %d with message:",
     senderID, recipientID, timeOfMessage);
   console.log(JSON.stringify(message));
-  sendTextMessage(senderID, JSON.stringify(message));
+  sendTextMessage(senderID, 'Toggling light with id "' + message.payload + '".');
 }
 
 function sendGenericMessage(recipientId, messageText) {
