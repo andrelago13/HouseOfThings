@@ -1,6 +1,8 @@
 const http = require('http');
+const httpCodes = require('http-status-codes');
 const express = require('express');
 const  router = express.Router();
+const config = require('../../../config');
 const engine = require('../../../lib/engine');
 
 function turnOn(text) {
@@ -57,7 +59,9 @@ router.post('/', function (req,res,next) {
         headers: headers,
     }
 
-
+    if (token != config.SLACK_OAUTH_ACCESS_TOKEN) {
+        res.statusCode(httpCodes.BAD_REQUEST);
+    }
 
     switch (command){
         case '/turn-on':
