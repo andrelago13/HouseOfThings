@@ -1,18 +1,18 @@
 const http = require('http');
 const express = require('express');
 const  router = express.Router();
-const engine = null;
+const engine = require('../../../lib/engine');
 
 function turnOn(text) {
     const id = text;
-    engine.power(id, true); //THIS IS ONLY AN EXAMPLE OF HOW TO TURN ON THE LIGHTS
+    engine.powerThing(id, true); //THIS IS ONLY AN EXAMPLE OF HOW TO TURN ON THE LIGHTS
 
     return '['+ text + '] turned on';
 }
 
 function turnOff(text) {
     const id = text;
-    engine.power(id, off); //THIS IS ONLY AN EXAMPLE OF HOW TO TURN ON THE LIGHTS
+    engine.powerThing(id, off); //THIS IS ONLY AN EXAMPLE OF HOW TO TURN ON THE LIGHTS
 
     return '[' + text + '] turned off';
 }
@@ -24,7 +24,7 @@ function getStatus(text) {
 }
 
 function getAllStatus() {
-    status = getAllStatus();
+    status = engine.getStatus();
 
     return '[1] is eating pancakes \n ' +
         '[2] is making dank M E M E S on 4chan.com ' +
@@ -37,12 +37,12 @@ function getAllStatus() {
 
 // TODO Verify token from requests
 router.post('/', function (req,res,next) {
+    console.log(req.body);
     const token = req.body.token;
     const command = req.body.command;
     const text = req.body.text;
     const responseUrl = req.body.response_url;
 
-    console.log(req.body);
     // Set the headers
     var headers = {
         // 'User-Agent':       'Super Agent/0.0.1',
@@ -104,10 +104,6 @@ router.post('/', function (req,res,next) {
 
             res.json(options.form);
             break;
-
-
-
-
     }
 });
 
