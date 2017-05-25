@@ -1,5 +1,5 @@
 var express = require('express');
-var engine = require('../../lib/engine.js');
+var engine = require('../../../lib/engine.js');
 var request = require('request');
 var router = express.Router();
 

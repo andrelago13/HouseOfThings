@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 const thirdParty = require('./routes/adapters/third-party');
-var messenger = require('./routes/adapters/messenger');
+var messenger = require('./routes/adapters/third-party/messenger');
 const router = express.Router();
 
 //const config = require('./config/config.js');
@@ -32,8 +32,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/third-party', thirdParty);
-app.use('/api/messenger', messenger);
+app.use('/api/third-party', thirdParty);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
