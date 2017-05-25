@@ -12,7 +12,7 @@ function turnOn(text) {
 
 function turnOff(text) {
     const id = text;
-    engine.powerThing(id, off); //THIS IS ONLY AN EXAMPLE OF HOW TO TURN ON THE LIGHTS
+    engine.powerThing(id, false); //THIS IS ONLY AN EXAMPLE OF HOW TO TURN ON THE LIGHTS
 
     return '[' + text + '] turned off';
 }
@@ -94,6 +94,7 @@ router.post('/', function (req,res,next) {
 
             res.json(options.form);
             break;
+
         case '/integration1-help':
             result= 'Not yet implemented';
 
