@@ -14,9 +14,28 @@ function turnOff(text) {
     const id = text;
     engine.power(id, off); //THIS IS ONLY AN EXAMPLE OF HOW TO TURN ON THE LIGHTS
 
-    return '['+ text + '] turned off';
+    return '[' + text + '] turned off';
+}
+function getStatus(text) {
+    const id = text;
+    const status = engine.getStatus(id);
+
+    return '[' + text + '] is turned on.....or off.... I don\'t know, this feature is not implemented yet :p';
 }
 
+function getAllStatus() {
+    status = getAllStatus();
+
+    return '[1] is eating pancakes \n ' +
+        '[2] is making dank M E M E S on 4chan.com ' +
+        '[3] is making dank M E M E S on 4chan.org' +
+        '[4] is looking up the difference between 4chan.org and 4chan.com' +
+        '[5] caught [5] looking up indecent content on the web' +
+        '[6] is turned on';
+}
+
+
+// TODO Verify token from requests
 router.post('/', function (req,res,next) {
     const token = req.body.token;
     const command = req.body.command;
@@ -38,23 +57,7 @@ router.post('/', function (req,res,next) {
         headers: headers,
     }
 
-    function getStatus(text) {
-        const id = text;
-        const status = engine.getStatus(id);
 
-        return '[' + text + '] is turned on.....or off.... I don\'t know, this feature is not implemented yet :p';
-    }
-
-    function getAllStatus() {
-        status = getAllStatus();
-
-        return '[1] is eating pancakes \n ' +
-            '[2] is making dank M E M E S on 4chan.com ' +
-            '[3] is making dank M E M E S on 4chan.org' +
-            '[4] is looking up the difference between 4chan.org and 4chan.com' +
-            '[5] caught [5] looking up indecent content on the web' +
-            '[6] is turned on';
-    }
 
     switch (command){
         case '/turn-on':
@@ -78,7 +81,7 @@ router.post('/', function (req,res,next) {
             res.json(options.form);
             break;
 
-        case 'status':
+        case '/thing-status':
             if (text) {
                 result = getStatus(text);
             } else {
@@ -91,6 +94,20 @@ router.post('/', function (req,res,next) {
 
             res.json(options.form);
             break;
+        case '/integration1-help':
+            result= 'Not yet implemented';
+
+            options.form = {
+                response_type: "in_channel",
+                text: result
+            };
+
+            res.json(options.form);
+            break;
+
+
+
+
     }
 });
 
