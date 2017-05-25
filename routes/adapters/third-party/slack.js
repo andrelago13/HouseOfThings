@@ -2,7 +2,7 @@ const http = require('http');
 const httpCodes = require('http-status-codes');
 const express = require('express');
 const  router = express.Router();
-const config = require('../../../config');
+const config = require('../../../config/config');
 const engine = require('../../../lib/engine');
 
 function turnOn(text) {
