@@ -59,9 +59,9 @@ router.post('/', function (req,res,next) {
         headers: headers,
     }
 
-    if (token != config.SLACK_OAUTH_ACCESS_TOKEN) {
+   /* if (token != config.SLACK_OAUTH_ACCESS_TOKEN) {
         res.statusCode(httpCodes.BAD_REQUEST);
-    }
+    }*/
 
     switch (command){
         case '/turn-on':
