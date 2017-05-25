@@ -2,7 +2,7 @@ const http = require('http');
 const httpCodes = require('http-status-codes');
 const express = require('express');
 const  router = express.Router();
-const config = require('../../../config/config');
+// const config = require('../../../config/config');
 const engine = require('../../../lib/engine');
 
 function turnOn(text) {
@@ -59,9 +59,9 @@ router.post('/', function (req,res,next) {
         headers: headers,
     }
 
-    if (token != config.SLACK_VERIFICATION_TOKEN) {
+    /*if (token != config.SLACK_VERIFICATION_TOKEN) {
         res.statusCode(httpCodes.BAD_REQUEST);
-    }
+    }*/
 
     switch (command){
         case '/turn-on':
