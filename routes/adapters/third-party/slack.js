@@ -1,10 +1,20 @@
 const http = require('http');
 const express = require('express');
 const  router = express.Router();
+const engine;
 
 function turnOn(text) {
-    return '['+ text + '] turned on';
+    const id = text;
+    engine.power(id, true); //THIS IS ONLY AN EXAMPLE OF HOW TO TURN ON THE LIGHTS
 
+    return '['+ text + '] turned on';
+}
+
+function turnOff(text) {
+    const id = text;
+    engine.power(id, off); //THIS IS ONLY AN EXAMPLE OF HOW TO TURN ON THE LIGHTS
+
+    return '['+ text + '] turned off';
 }
 
 router.post('/', function (req,res,next) {
@@ -27,6 +37,25 @@ router.post('/', function (req,res,next) {
         method: 'POST',
         headers: headers,
     }
+
+    function getStatus(text) {
+        const id = text;
+        const status = engine.getStatus(id);
+
+        return '[' + text + '] is turned on.....or off.... I don\'t know, this feature is not implemented yet :p';
+    }
+
+    function getAllStatus() {
+        status = getAllStatus();
+
+        return '[1] is eating pancakes \n ' +
+            '[2] is making dank M E M E S on 4chan.com ' +
+            '[3] is making dank M E M E S on 4chan.org' +
+            '[4] is looking up the difference between 4chan.org and 4chan.com' +
+            '[5] caught [5] looking up indecent content on the web' +
+            '[6] is turned on';
+    }
+
     switch (command){
         case '/turn-on':
             result = turnOn(text);
@@ -39,6 +68,29 @@ router.post('/', function (req,res,next) {
             res.json(options.form);
             break;
 
+        case '/turn-off':
+            result = turnOff(text);
+            options.form = {
+                response_type: "in_channel",
+                text: result
+            };
+
+            res.json(options.form);
+            break;
+
+        case 'status':
+            if (text) {
+                result = getStatus(text);
+            } else {
+                result = getAllStatus();
+            }
+            options.form = {
+                response_type: "in_channel",
+                text: result
+            };
+
+            res.json(options.form);
+            break;
     }
 });
 
