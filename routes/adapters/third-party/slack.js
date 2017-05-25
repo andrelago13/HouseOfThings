@@ -26,7 +26,7 @@ function getStatus(text) {
 function getAllStatus() {
     status = engine.getStatus();
 
-    return '[1] is eating pancakes \n ' +
+    return '[1] is eating pancakes' +
         '\n[2] is making dank M E M E S on 4chan.com ' +
         '\n[3] is making dank M E M E S on 4chan.org' +
         '\n[4] is looking up the difference between 4chan.org and 4chan.com' +
